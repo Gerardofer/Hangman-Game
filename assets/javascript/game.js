@@ -30,16 +30,17 @@ document.onkeyup = function(){
 		console.log(userLetters);
 	} 
 
-	document.getElementById("#letters").innerHTML = userLetters;
+	// document.getElementById("#letters").innerHTML = userLetters;
 };
 
 
 function randomWord(){
 	var wordGenerator = composer[Math.floor(Math.random() * composer.length)];
 		if (event.keyCode === 32){
-			console.log(wordGenerator);
+			var newWord = "<p id='currentWord'>Current Word:</p>" + "<p>" + wordGenerator + "</p>";
+			document.querySelector("#dashboard").innerHTML = newWord; 
 		}
-}
+};
 
 
 
