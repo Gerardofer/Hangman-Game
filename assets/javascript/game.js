@@ -1,58 +1,42 @@
-//Hangman game
+// Hangman game
 
-//********** Steps ***********
+// 1.- create a pool of words to be used
+// 2.- create a var that will randomize the order of output for arr
+// 3.- create a function that activates the game once a letter is pressed
+// 4.- create a function that grabs the word from the array
+// 5.- create a function that checks if "pressedKey" is present within the chosen word
 
-// 1.- Generate a word
-// 2.- ask for user input and keep track of the letters
-// 3.- chech user input with the word provided
-// 4.- if user input matches a letter from the word, reveal letter, otherwise decrease chances
-// 5.- if chances are spent, increase losses, otherwise if word is revealed increase wins
-// 6.- generate a new word
+//Pool of words
+var arr = ["beethoven", "mozart", "brahms", "lizst", "chopin", "rachmaninov", "Tchaikovski", "mendelson", "bach"];
 
-var composer = ["beethoven", "bach", "chopin", "scarlati", "mendelson", "mozart", "scriabin", "lizst", "brahms", "schumman", "shubert"];
-var beethoven = "";
-var userLetters = "";
-var missed = 0;
-var losses = 0;
+//Random word generator
+var wordGenerator = arr[Math.floor(Math.random() * arr.length)];
 
+//keyboard activation function
 document.onkeyup = function(){
-	var userInput = String.fromCharCode(event.keyCode).toLowerCase();
+	var pressedKey = event.key.toLowerCase();
+	var word = wordGenerator;
 
-	randomWord();
-
-	if (userInput === composer[0][0] || userInput === composer[0][1] || userInput === composer[0][2] || userInput === composer[0][3] || userInput === composer[0][4] || userInput === composer[0][5] || userInput === composer[0][6] || userInput === composer[0][7] || userInput === composer[0][8] || userInput === composer[0][9]){
-		beethoven += userInput;
-		console.log(beethoven);
+	for (var i = 0; i < word.length; i++){
+		var neWord = word.replace(word[i], "_");
+		document.write(neWord[i]);
 	}
 
-	else {
-		userLetters += userInput;
-		console.log(userLetters);
-	} 
+	// var isPresent = arr.includes(pressedKey);
 
-	// document.getElementById("#letters").innerHTML = userLetters;
-};
+	// var index = .indexOf(pressedKey);
 
-
-function randomWord(){
-	var wordGenerator = composer[Math.floor(Math.random() * composer.length)];
-		if (event.keyCode === 32){
-			var newWord = "<p id='currentWord'>Current Word:</p>" + "<p>" + wordGenerator + "</p>";
-			document.querySelector("#dashboard").innerHTML = newWord; 
-		}
-};
-
-
-
-
-
-		
-
-
-
-
-
-
-
+	// console.log(pressedKey);
+	// // console.log(isPresent);
+	// console.log(word);
+	// console.log(index);
 	
+};
 
+// function aFunction(){
+// 	var word = wordGenerator;
+// 	for (var i = 0; i < word.length; i++);
+// 		var neWord = word.map(function(x){return x.replace(/word/g, "_ ")});
+// 	console.log(neWord);
+
+// }
