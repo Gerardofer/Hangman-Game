@@ -12,15 +12,45 @@ var arr = ["beethoven", "mozart", "brahms", "lizst", "chopin", "rachmaninov", "T
 //Random word generator
 var wordGenerator = arr[Math.floor(Math.random() * arr.length)];
 
+
 //keyboard activation function
 document.onkeyup = function(){
 	var pressedKey = event.key.toLowerCase();
 	var word = wordGenerator;
+	console.log(word);
+	underScore();
+	index();
+	letterGuessed();
 
-	for (var i = 0; i < word.length; i++){
+	//function to convert the word from the pool into "_ _ _ _ _ _ _"
+	function underScore (){
+		for (var i = 0; i < word.length; i++){
 		var neWord = word.replace(word[i], "_");
 		document.write(neWord[i]);
-	}
+		}
+	};
+
+	//function to find the position of the user input letter
+	function index(){	
+		for (var i = 0; i < word.length; i++){
+		var index = word.indexOf(pressedKey);
+		console.log(index);
+		}
+	};
+
+	//function to replace the letter guessed on neWord.
+	function letterGuessed(){
+		for (var i = 0; neWord.length; i++){
+		if (index !== -1){
+			var guessed = neWord.replace(/"_"/gi, pressedKey);
+			document.write(guessed); 
+			}
+		}
+	};
+	
+
+
+
 
 	// var isPresent = arr.includes(pressedKey);
 
@@ -28,7 +58,6 @@ document.onkeyup = function(){
 
 	// console.log(pressedKey);
 	// // console.log(isPresent);
-	// console.log(word);
 	// console.log(index);
 	
 };
