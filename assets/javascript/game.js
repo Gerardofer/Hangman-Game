@@ -24,13 +24,13 @@ console.log(wordGenerator);
 
 generateUnderScore();
 
-
-
 //keyboard activation function
 document.onkeyup = function(){
 	var pressedKey = event.key.toLowerCase();
 	console.log(pressedKey);
+	console.log(Count());
 	keyIndex();
+	// guessCount();
 
 //function to find the index in the string and replace the underscore with the index
 	function keyIndex(){	
@@ -38,14 +38,25 @@ document.onkeyup = function(){
 			var index = wordGenerator.indexOf(pressedKey);
 			if (index !== -1){
 				underScore[index] = pressedKey;
-			}else{
-				lettersUsed += index;
 			}
 			var targetUnderscore = document.getElementById('wordUnderscore');
 			targetUnderscore.innerHTML = "<p id='underscores'>" + underScore + "</p>";
 		}
 	};
 
+	function Count(){
+		if (pressedKey){
+			guesses--;
+			lettersUsed += pressedKey
+			console.log(guesses);
+			console.log(lettersUsed);
+		}
+		var guessLeft = document.getElementById('guesses');
+		guessLeft.innerHTML = guesses;
+
+		var letter = document.getElementById('used');
+		letter.innerHTML = lettersUsed;
+	};
 };
 
 
