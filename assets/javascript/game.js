@@ -7,7 +7,7 @@
 // 5.- create a function that checks if "pressedKey" is present within the chosen word
 
 //Pool of words
-var arr = ["beethoven", "mozart", "brahms", "lizst", "chopin", "rachmaninov", "Tchaikovski", "mendelson", "bach"];
+var arr = ["beethoven", "mozart", "brahms", "lizst", "chopin", "rachmaninov", "tchaikovski", "mendelson", "bach"];
 
 //Random word generator
 var wordGenerator = arr[Math.floor(Math.random() * arr.length)];
@@ -17,10 +17,20 @@ var wordGenerator = arr[Math.floor(Math.random() * arr.length)];
 document.onkeyup = function(){
 	var pressedKey = event.key.toLowerCase();
 	var word = wordGenerator;
+
+	console.log(pressedKey);
 	console.log(word);
 	underScore();
-	index();
-	letterGuessed();
+	keyIndex();
+
+	if (keyIndex != -1){
+		// console.log("you guessed correctly");
+	}else if (index == -1){
+		console.log("Please try again");
+	}else {
+		console.log("Make a valid entry");
+	}
+
 
 	//function to convert the word from the pool into "_ _ _ _ _ _ _"
 	function underScore (){
@@ -31,23 +41,13 @@ document.onkeyup = function(){
 	};
 
 	//function to find the position of the user input letter
-	function index(){	
+	function keyIndex(){	
 		for (var i = 0; i < word.length; i++){
 		var index = word.indexOf(pressedKey);
 		console.log(index);
 		}
 	};
 
-	//function to replace the letter guessed on neWord.
-	function letterGuessed(){
-		for (var i = 0; neWord.length; i++){
-		if (index !== -1){
-			var guessed = neWord.replace(/"_"/gi, pressedKey);
-			document.write(guessed); 
-			}
-		}
-	};
-	
 
 
 
@@ -56,7 +56,6 @@ document.onkeyup = function(){
 
 	// var index = .indexOf(pressedKey);
 
-	// console.log(pressedKey);
 	// // console.log(isPresent);
 	// console.log(index);
 	
