@@ -1,11 +1,8 @@
-/*body {
-	background-image: url("../images/arindam-mahanta-217437.jpg");
-	background-size: cover;
-	background-position: center;
-	background-attachment: fixed;
-	color: #ffffff;
+#wordUnderscore {
+	font-size: 14rem;
+	text-align: center;
 }
 
-h1 {
-	text-align: center;
-}*/
+#underscores {
+	font-size: 7rem;
+}
