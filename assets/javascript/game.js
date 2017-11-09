@@ -9,8 +9,14 @@ var wordGenerator = arr[numGenerator];
 
 //empty array variable where the "_" will be stored based on the length of the arr
 var underScore = [];
-// var noComasUnderScore = underScore.split().join(" ");
+
+//variable to store letters used
+var lettersUsed = "";
+
+
 console.log(wordGenerator);
+
+generateUnderScore();
 
 
 
@@ -18,32 +24,22 @@ console.log(wordGenerator);
 document.onkeyup = function(){
 	var pressedKey = event.key.toLowerCase();
 	console.log(pressedKey);
-
-
-	if (event.keyCode === 32){
-		generateUnderScore();
-	}
+	keyIndex();
 
 	function keyIndex(){	
 		for (var i = 0; i < wordGenerator.length; i++){
-		var index = wordGenerator.indexOf(pressedKey);
-		console.log(index);
+			var index = wordGenerator.indexOf(pressedKey);
+			if (index !== -1){
+				underScore[index] = pressedKey;
+			}
+			var targetUnderscore = document.getElementById('wordUnderscore');
+			targetUnderscore.innerHTML = "<p id='underscores'>" + underScore + "</p>";
 		}
 	};
-};
-// 	console.log(pressedKey);
-// 	console.log(wordGenerator);
-// 	underScore();
-// 	keyIndex();
 
-// //function to find the position of the user input letter
-// function keyIndex(){	
-// 	for (var i = 0; i < wordGenerator.length; i++){
-// 	var index = wordGenerator.indexOf(pressedKey);
-// 	console.log(index);
-// 	}
-// };
-		
+
+};
+
 
 
 
