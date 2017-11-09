@@ -13,6 +13,12 @@ var underScore = [];
 //variable to store letters used
 var lettersUsed = "";
 
+//Variable to track the guesses
+var guesses = 15;
+
+//Variable to keep track of the wins
+var wins = 0;
+
 
 console.log(wordGenerator);
 
@@ -32,6 +38,8 @@ document.onkeyup = function(){
 			var index = wordGenerator.indexOf(pressedKey);
 			if (index !== -1){
 				underScore[index] = pressedKey;
+			}else{
+				lettersUsed += index;
 			}
 			var targetUnderscore = document.getElementById('wordUnderscore');
 			targetUnderscore.innerHTML = "<p id='underscores'>" + underScore + "</p>";

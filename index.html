@@ -10,21 +10,34 @@
 		<div class="jumbotron">
 			<h1>HANGMAN</h1>
 			<h3>Guess your knowledge of Classical Music</h3>
-			<h4>Press the spacebar for a new word!</h4>
+			<div id="win">WINS</div>
+			<div id="winsCounter"></div>
 				<div id="wordUnderscore"></div>
-
 		</div>
 	</div>
 
 	<div class="container">
-		<div id="dashboard">
-			<div id="userLetters"></div>	
+		<div class="panel panel-defaul">
+			<div class="panel-headin">Check your progress</div>
+			<table class="table table-responsive">
+				<tr>
+					<th>Description</th>
+					<th>Units</th>
+				</tr>
+				<tr>
+					<td>LETTERS USED</td>
+					<td id="used"></td>
+				</tr>
+				<tr>
+					<td>GUESSES LEFT</td>
+					<td id="guesses"></td>
+				</tr>
+
+			</table>
 		</div>
 	</div>
 
 	
-
-
 
 <script type="text/javascript" src="assets/javascript/game.js"></script>
 

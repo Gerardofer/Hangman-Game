@@ -1,8 +1,13 @@
 #wordUnderscore {
-	font-size: 14rem;
+	font-size: 7rem;
 	text-align: center;
 }
 
 #underscores {
+	font-size: 7rem;
+}
+
+#win {
+	text-align: center;
 	font-size: 7rem;
 }
