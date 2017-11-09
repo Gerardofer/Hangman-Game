@@ -26,6 +26,7 @@ document.onkeyup = function(){
 	console.log(pressedKey);
 	keyIndex();
 
+//function to find the index in the string and replace the underscore with the index
 	function keyIndex(){	
 		for (var i = 0; i < wordGenerator.length; i++){
 			var index = wordGenerator.indexOf(pressedKey);
@@ -36,7 +37,6 @@ document.onkeyup = function(){
 			targetUnderscore.innerHTML = "<p id='underscores'>" + underScore + "</p>";
 		}
 	};
-
 
 };
 
