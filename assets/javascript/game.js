@@ -3,6 +3,9 @@
 // Pool of words
 var arr = ["beethoven", "mozart", "brahms", "lizst", "chopin", "rachmaninov", "tchaikovski", "mendelson", "bach"];
 
+//variable press key
+var pressedKey;
+
 //Random word generator
 var numGenerator = Math.floor(Math.random() * arr.length);
 var wordGenerator = arr[numGenerator];
@@ -23,14 +26,16 @@ var wins = 0;
 //variable to record losses
 var losses = 0;
 
-console.log(wordGenerator);
-generateUnderScore();
+var targetWord = document.getElementById('wordUnderscore');
+targetWord.innerHTML = generateUnderScore().join(" ");
 
+console.log(wordGenerator);
+// generateUnderScore();
 
 
 //keyboard activation function
 document.onkeyup = function(){
-	var pressedKey = event.key.toLowerCase();
+	pressedKey = event.key.toLowerCase();
 	console.log(pressedKey);
 	Count();
 	keyIndex();
@@ -40,12 +45,15 @@ document.onkeyup = function(){
 //to determine wins and reset counters
 	if (underScore.join("") == wordGenerator){
 		wins++;
+		underScore = [];
+		wordGenerator;[]
 		var totalWins = document.getElementById('winsCounter');
 		totalWins.innerHTML = wins;
 	};
 
 	if (guesses == 0){
 		losses++;
+		guesses	= 15;
 		var totaLosses = document.getElementById('loss');
 		totaLosses.innerHTML = losses;
 	}
@@ -53,9 +61,11 @@ document.onkeyup = function(){
 //function to find the index in the string and replace the underscore with the index
 	function keyIndex(){	
 		for (var i = 0; i < wordGenerator.length; i++){
-			var index = wordGenerator.indexOf(pressedKey);
+			var index = wordGenerator.search(pressedKey);
+			// var matchIndex = /index/gi;
+			// var result = index.match(matchIndex);
 			if (index !== -1){
-				underScore[index] = pressedKey;
+				underScore[index] = pressedKey
 			}
 			var targetUnderscore = document.getElementById('wordUnderscore');
 			targetUnderscore.innerHTML = "<p id='underscores'>" + underScore + "</p>";
@@ -87,20 +97,19 @@ function generateUnderScore(){
 	for (var i = 0; i < wordGenerator.length; i++){
 		underScore.push("_");
 	}
-
-	var targetWord = document.getElementById('wordUnderscore');
-	targetWord.innerHTML = "<p id='underscores'>" + underScore + "</p>";
+	return underScore;
 };
 
-function gameReset(){
-	if (wins > 1 || losses > 1){
-		guesses = 15;
-		lettersUsed = "";
-		wordGenerator;
-	}
-};
 
-gameReset();
+// function gameReset(){
+// 	if (wins > 1 || losses > 1){
+// 		guesses = 15;
+// 		lettersUsed = "";
+// 		wordGenerator;
+// 	}
+// };
+
+// gameReset();
 
 
 
