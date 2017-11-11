@@ -100,6 +100,11 @@ document.onkeyup = function(){
 
 }
 
+//need to stop the flow of input from the user
+
+//Need to create a function that will reset the game and will generate a new word
+
+
 
 
 
