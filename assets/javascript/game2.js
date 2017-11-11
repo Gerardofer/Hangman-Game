@@ -54,6 +54,9 @@ function progress(){
 	}
 };
 
+targetWins.innerHTML = wins;
+targetLoss.innerHTML = losses;
+
 function userGuessA(){
 		for (var i = 0; i < guessWordUnder.length; i++){
 			var index = guessWord.indexOf(userInput);
@@ -100,6 +103,8 @@ document.onkeyup = function(){
 
 }
 
+targetAttempts.innerHTML = attempts;
+tagetLetter.innerHTML = letters;
 //need to stop the flow of input from the user
 
 //Need to create a function that will reset the game and will generate a new word
