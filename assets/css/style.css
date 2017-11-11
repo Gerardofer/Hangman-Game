@@ -17,3 +17,7 @@
 	text-align: center;
 	font-size: 7rem;
 }
+
+button.btn.btn-info.btn-lg {
+	text-align: center;
+}
