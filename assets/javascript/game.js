@@ -1,115 +1,97 @@
-// Hangman game
+//Global Variables
+//===========================================================
 
-// Pool of words
-var arr = ["beethoven", "mozart", "brahms", "lizst", "chopin", "rachmaninov", "tchaikovski", "mendelson", "bach"];
-
-//variable press key
-var pressedKey;
-
-//Random word generator
-var numGenerator = Math.floor(Math.random() * arr.length);
-var wordGenerator = arr[numGenerator];
-
-//empty array variable where the "_" will be stored based on the length of the arr.  Second var to replace "," with " ".
-var underScore = [];
-// var newUnderScore = generateUnderScore().join(" ");
-
-//variable to store letters used
-var lettersUsed = "";
-
-//Variable to track the guesses
-var guesses = 15;
-
-//Variable to keep track of the wins
+var composers = ["mozart", "bach", "ravel", "berlioz", "mendelson", "scriabin", "brahms", "shubert", "schumann", "chopin", "haydn", "verdi"];
+var randNum = Math.floor(Math.random() * composers.length);
+var guessWord = composers[randNum];
+var guessWordUnder = [];
+var userInput;
 var wins = 0;
-
-//variable to record losses
 var losses = 0;
+var letters = [];
+var attempts = 15;
+var docUnderScore = document.getElementById('wordUnderscore');
+var warning = document.getElementById('warning');
+var targetAttempts = document.getElementById('guesses');
+var targetWins = document.getElementById('winsCounter');
+var targetLoss = document.getElementById('loss');
+var tagetLetter = document.getElementById('used');
 
-var targetWord = document.getElementById('wordUnderscore');
-targetWord.innerHTML = generateUnderScore().join(" ");
 
-console.log(wordGenerator);
-// generateUnderScore();
+//============================================================
 
+console.log(guessWord);
 
-//keyboard activation function
+//function to get underscores
+function underScore(){
+	for (var i = 0; i < guessWord.length; i++){
+		guessWordUnder.push("_");
+	}return guessWordUnder;
+}
+
+console.log(underScore());
+
+//User interaction
 document.onkeyup = function(){
-	pressedKey = event.key.toLowerCase();
-	console.log(pressedKey);
-	Count();
-	keyIndex();
-	// guessCount();
+	var userInput = String.fromCharCode(event.keyCode).toLowerCase();
 
+	// console.log(userInput);	
 
-//to determine wins and reset counters
-	if (underScore.join("") == wordGenerator){
-		wins++;
-		underScore = [];
-		wordGenerator;[]
-		var totalWins = document.getElementById('winsCounter');
-		totalWins.innerHTML = wins;
+function userGuessA(){
+		for (var i = 0; i < guessWordUnder.length; i++){
+			var index = guessWord.indexOf(userInput);
+		}if (index !== -1){
+			guessWordUnder[index] = userInput;
+		}
+		 docUnderScore.innerHTML = "<p id='underscores'>" + guessWordUnder.join("") + "</p>";
 	};
 
-	if (guesses == 0){
-		losses++;
-		guesses	= 15;
-		var totaLosses = document.getElementById('loss');
-		totaLosses.innerHTML = losses;
+userGuessA();
+
+function userGuessB(){
+		for (var i = 0; i < guessWordUnder.length; i++){
+			var index = guessWord.lastIndexOf(userInput);
+		}if (index !== -1){
+			guessWordUnder[index] = userInput;
+		}
+		 docUnderScore.innerHTML = "<p id='underscores'>" + guessWordUnder.join("") + "</p>";
+	};
+
+userGuessB();
+
+	if (userInput){
+			attempts--;
+			letters.push(userInput);
+			targetAttempts.innerHTML = attempts;
+			tagetLetter.innerHTML = letters;
 	}
 
-//function to find the index in the string and replace the underscore with the index
-	function keyIndex(){	
-		for (var i = 0; i < wordGenerator.length; i++){
-			var index = wordGenerator.search(pressedKey);
-			// var matchIndex = /index/gi;
-			// var result = index.match(matchIndex);
-			if (index !== -1){
-				underScore[index] = pressedKey
-			}
-			var targetUnderscore = document.getElementById('wordUnderscore');
-			targetUnderscore.innerHTML = "<p id='underscores'>" + underScore + "</p>";
-		}
-	};
+	progress();
 
-//function to keep track of chances left and letters used.
-	function Count(){
-		if (pressedKey){
-			guesses--;
-			lettersUsed += pressedKey
-			console.log(guesses);
-			console.log(lettersUsed);
-		}
-		var guessLeft = document.getElementById('guesses');
-		guessLeft.innerHTML = guesses;
+};
 
-		var letter = document.getElementById('used');
-		letter.innerHTML = lettersUsed;
-	};
+
+function progress(){
+	
+	if (guessWordUnder.join("") == guessWord){
+			wins++;
+			attempts = 15;
+			letters = [];
+			alert("You win!!!");
+			targetWins.innerHTML = wins;
+	}
+	else if (attempts <= 0){
+			losses++;
+			attempts = 15;
+			letters = [];
+			alert("That's ok, try again");
+			targetLoss.innerHTML = losses;
+			
+	}
 };
 
 
 
-
-//function to convert the word from the pool into "_ _ _ _ _ _ _"
-
-function generateUnderScore(){
-	for (var i = 0; i < wordGenerator.length; i++){
-		underScore.push("_");
-	}
-	return underScore;
-};
-
-
-// function gameReset(){
-// 	if (wins > 1 || losses > 1){
-// 		guesses = 15;
-// 		lettersUsed = "";
-// 		wordGenerator;
-// 	}
-// };
-
-// gameReset();
 
 
 
