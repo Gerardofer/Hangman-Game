@@ -15,6 +15,7 @@ var targetWins = document.getElementById('winsCounter');
 var targetLoss = document.getElementById('loss');
 var tagetLetter = document.getElementById('used');
 var targerWarning = document.getElementById('warning');
+var targetReset = document.getElementById('start')
 
 
 console.log(guessWord);
@@ -57,7 +58,7 @@ document.onkeyup = function(){
 
 	// if (userInput == "1234567890"){
 	// 	warning.innerHTML = '<p>Try again!, only characters will work in this game!</p>'
-	
+
 		if (userInput){
 			attempts--;
 			letters += userInput;
@@ -70,17 +71,24 @@ document.onkeyup = function(){
 		}
 		if (attempts <= 0){
 			losses++;
-			attempts = 15;
 			targetLoss.innerHTML = losses;
 		}
-	
-
-	// function win(){
-	// 	if (guessWordUnder === guessWord){
-	// 		wins++;
-
-	// 	}
 };
+
+function gameReset(){
+		if (guessWordUnder.join("") == guessWord || attempts <= 0){
+			attempts = 15;
+			letters = '';
+			
+		}
+		targetReset.innerHTML = "<p>Please press the spacebar for a new word</p>"
+		document.onkeyup = function(){
+			if (e.keyCode == 32){
+				guessWordUnder = [];
+			}
+		}
+	};
+// gameReset();
 	
 
 
